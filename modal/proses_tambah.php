@@ -5,8 +5,9 @@ include_once 'functions.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['judul']) && isset($_POST['tanggal']) && isset($_POST['deskripsi'])) {
         $judul = $_POST['judul'];
-        $tanggal = $_POST['tanggal'];
         $deskripsi = $_POST['deskripsi'];
+        $tanggal = $_POST['tanggal'];
+        
 
         if (isset($_FILES["gambar"]["name"])) {
             $target_dir = "../assets/";
@@ -48,13 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
-            if (editDataKegiatan($koneksi, $id, $judul, $tanggal, $deskripsi, $gambar)) {
+            if (editDataKegiatan($koneksi, $id, $judul,$deskripsi, $tanggal,  $gambar)) {
                 echo "<p>Data berhasil diperbarui.</p>";
             } else {
                 echo "<p>Error saat memperbarui data: " . mysqli_error($koneksi) . "</p>";
             }
         } else {
-            if (inputDataKegiatan($koneksi, $judul, $tanggal, $deskripsi, $gambar)) {
+            if (inputDataKegiatan($koneksi, $judul, $deskripsi, $tanggal, $gambar)) {
                 echo "<p>Data berhasil disimpan.</p>";
             } else {
                 echo "<p>Error saat menyimpan data: " . mysqli_error($koneksi) . "</p>";

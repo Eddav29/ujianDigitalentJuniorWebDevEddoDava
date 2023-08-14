@@ -20,9 +20,9 @@
                 <h2 class="mb-0 text-light">Tambah Kegiatan</h2>
             </div>
             <div class="card-body">
-                <form action="modal/proses_tambah.php" method="POST">
+                <form action="modal/proses_tambah.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="judul" class="form-label">Juduln</label>
+                        <label for="judul" class="form-label">Judul</label>
                         <input type="text" class="form-control" id="judul" name="judul" required>
                     </div>
                     <div class="mb-3">
