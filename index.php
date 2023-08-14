@@ -6,6 +6,8 @@
     <title>Instansi XYZ</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="plugin/css/bootstrap.min.css">
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <style>
         /* Custom styles for the header */
         .custom-header {
@@ -18,11 +20,24 @@
         .custom-navbar {
             background-color: #306ee8;
         }
+        
+        .custom-navbar .nav-link:hover {
+            color: #306ee8;
+        }
 
         /* Custom styles for the content */
         .custom-content {
             background-color: #F2F2F2;
             padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Custom styles for the footer */
+        .custom-footer {
+            background-color: #2D3876;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
@@ -42,7 +57,7 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php">Login</a>
@@ -57,6 +72,29 @@
         <!-- Add dynamic content here from the database -->
     </div>
 
+    <footer class="custom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="mb-4">About Us</h2>
+                    <p><strong>NAMA BPSDMP</strong></p>
+                    <p>Balai Pengembangan Sumber Daya Manusia dan Penelitian Komunikasi dan Informatika Surabaya</p>
+                    <p>Badan Penelitian dan Pengembangan Sumber Daya Manusia - Kementerian Komunikasi dan Informatika Republik Indonesia</p>
+                    <p>Alamat: Jl. Raya Ketajen No.36, Ketajen, Kec. Gedangan, Kabupaten Sidoarjo, Jawa Timur 61254</p>
+                    <p>Telepon: (031) 8011944</p>
+                    <p>Provinsi: Jawa Timur</p>
+                    <p>
+                        <a href="https://instagram.com/bpsdmp.kominfo.sby" target="_blank" class="btn btn-primary mr-2">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="https://youtube.com/@bpsdmpkominfosurabaya5369" target="_blank" class="btn btn-danger">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- Include Bootstrap JS -->
     <script src="plugin/js/bootstrap.min.js"></script>
 </body>
