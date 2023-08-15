@@ -7,14 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $judul = $_POST['judul'];
         $deskripsi = $_POST['deskripsi'];
         $tanggal = $_POST['tanggal'];
-        
 
-        if (isset($_FILES["gambar"]["name"])) {
+        if (isset($_FILES["gambar"]["name"]) && !empty($_FILES["gambar"]["name"])) {
             $target_dir = "../assets/";
             $target_file = $target_dir . basename($_FILES["gambar"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $check = getimagesize($_FILES["gambar"]["tmp_name"]);
+
+
             if ($check !== false) {
                 $uploadOk = 1;
             } else {
@@ -44,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $gambar = htmlspecialchars(basename($_FILES["gambar"]["name"]));
         } else {
-            $gambar = "";
+            $gambar = $_POST['gambar_lama']; 
         }
 
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
-            if (editDataKegiatan($koneksi, $id, $judul,$deskripsi, $tanggal,  $gambar)) {
+            if (editDataKegiatan($koneksi, $id, $judul, $deskripsi, $tanggal, $gambar)) {
                 echo "<p>Data berhasil diperbarui.</p>";
             } else {
                 echo "<p>Error saat memperbarui data: " . mysqli_error($koneksi) . "</p>";

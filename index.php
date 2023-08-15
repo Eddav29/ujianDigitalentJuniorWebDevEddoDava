@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,9 +68,28 @@
         </div>
     </nav>
 
-    <div class="custom-content container mt-5">
-        <h2 class="mb-4">Documentations of Recent Activities</h2>
-        <!-- Add dynamic content here from the database -->
+     <div class="custom-content container mt-5">
+        <div class="row">
+            <!-- Example activity (berita) cards -->
+            <?php
+                // Assume $activityList is an array of kegiatan (activity) data from the database
+                foreach ($kegiatan as $kegiatan) {
+            ?>
+            <div class="col-md-6">
+                <div class="card news-card">
+                    <img src="assets/<?php echo $activity['gambar']; ?>" class="card-img-top" alt="<?php echo $activity['nama_kegiatan']; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $activity['judul']; ?></h5>
+                        <p class="card-text"><?php echo $activity['deskripsi']; ?></p>
+                        <p class="card-text"><strong>Tanggal:</strong> <?php echo $activity['tanggal']; ?></p>
+                        <a href="#" class="btn btn-primary">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            <?php
+                }
+            ?>
+        </div>
     </div>
 
     <footer class="custom-footer">
@@ -77,7 +97,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2 class="mb-4">About Us</h2>
-                    <p><strong>NAMA BPSDMP</strong></p>
+                    <p><strong> BPSDMP Surabaya</strong></p>
                     <p>Balai Pengembangan Sumber Daya Manusia dan Penelitian Komunikasi dan Informatika Surabaya</p>
                     <p>Badan Penelitian dan Pengembangan Sumber Daya Manusia - Kementerian Komunikasi dan Informatika Republik Indonesia</p>
                     <p>Alamat: Jl. Raya Ketajen No.36, Ketajen, Kec. Gedangan, Kabupaten Sidoarjo, Jawa Timur 61254</p>

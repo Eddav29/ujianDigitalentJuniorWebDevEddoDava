@@ -90,8 +90,6 @@ $kegiatan = getAllKegiatan($koneksi);
                             <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="hapus.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')">Hapus</a>
                     </td>
-    </div>
-
                     </tr>
                 <?php endforeach; ?>
             </tbody>

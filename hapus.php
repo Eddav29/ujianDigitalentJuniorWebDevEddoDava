@@ -11,7 +11,22 @@ include_once 'modal/functions.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Hapus kegiatan berdasarkan ID
+    // Ambil data kegiatan berdasarkan ID
+    $kegiatan = getKegiatanById($koneksi, $id);
+    if (!$kegiatan) {
+        echo "Data kegiatan tidak ditemukan.";
+        exit();
+    }
+
+    // Hapus file gambar terkait (jika ada)
+    if (!empty($kegiatan['gambar'])) {
+        $gambarPath = "assets/" . $kegiatan['gambar'];
+        if (file_exists($gambarPath)) {
+            unlink($gambarPath);
+        }
+    }
+
+    // Hapus kegiatan dari database
     if (hapusDataKegiatan($koneksi, $id)) {
         header("Location: admin.php");
         exit();
@@ -21,4 +36,5 @@ if (isset($_GET['id'])) {
 } else {
     echo "ID kegiatan tidak valid.";
 }
+
 ?>
