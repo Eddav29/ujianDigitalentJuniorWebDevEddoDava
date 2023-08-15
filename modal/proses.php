@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $gambar = htmlspecialchars(basename($_FILES["gambar"]["name"]));
         } else {
-            $gambar = $_POST['gambar_lama']; 
+            $gambar = "";
         }
 
         if (isset($_POST['id'])) {

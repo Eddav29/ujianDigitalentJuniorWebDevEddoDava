@@ -68,29 +68,35 @@
         </div>
     </nav>
 
-     <div class="custom-content container mt-5">
+<div class="container mt-5">
+        <h1>Halaman Berita</h1>
         <div class="row">
-            <!-- Example activity (berita) cards -->
             <?php
-                // Assume $activityList is an array of kegiatan (activity) data from the database
-                foreach ($kegiatan as $kegiatan) {
-            ?>
-            <div class="col-md-6">
-                <div class="card news-card">
-                    <img src="assets/<?php echo $activity['gambar']; ?>" class="card-img-top" alt="<?php echo $activity['nama_kegiatan']; ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $activity['judul']; ?></h5>
-                        <p class="card-text"><?php echo $activity['deskripsi']; ?></p>
-                        <p class="card-text"><strong>Tanggal:</strong> <?php echo $activity['tanggal']; ?></p>
-                        <a href="#" class="btn btn-primary">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <?php
-                }
+            // Include koneksi database
+            include_once 'config/koneksi.php';
+
+            // Query untuk mengambil data kegiatan dari tabel
+            $query = "SELECT * FROM kegiatan";
+            $result = mysqli_query($koneksi, $query);
+
+            // Loop through each row in the result
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<div class="col-md-4 mb-4">';
+                echo '<div class="card">';
+                echo '<img src="assets/' . $row['gambar'] . '" class="card-img-top" alt="' . $row['judul'] . '">';
+                echo '<div class="card-header">' . $row['tanggal'] . '</div>'; // Tambahkan card header berdasarkan tanggal
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . $row['judul'] . '</h5>';
+                echo '<p class="card-text">' . $row['deskripsi'] . '</p>';
+                echo '<a href="#" class="btn btn-primary">Baca Selengkapnya</a>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
             ?>
         </div>
     </div>
+
 
     <footer class="custom-footer">
         <div class="container">
