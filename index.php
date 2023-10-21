@@ -76,33 +76,35 @@
     </nav>
 
     <!-- Carousel Section -->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <!-- Dynamic generation of carousel indicators using PHP -->
             <?php
-            // Sisipkan koneksi ke database
+            // Include your database connection and functions here
             include_once 'config/koneksi.php';
+            include_once 'modal/functions.php';
+            $kegiatan = getAllKegiatan($koneksi);
+            $slideNumber = 0;
 
-            // Kueri untuk mengambil data kegiatan dari tabel
-            $query = "SELECT * FROM kegiatan";
-            $result = mysqli_query($koneksi, $query);
+            foreach ($kegiatan as $row) {
+                echo '<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="' . $slideNumber . '"';
 
-            $slideNumber = 1;
+                if ($slideNumber === 0) {
+                    echo ' class="active"';
+                }
 
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="' . $slideNumber . '" aria-label="Slide ' . $slideNumber . '"></button>';
+                echo ' aria-label="Slide ' . ($slideNumber + 1) . '"></button>';
                 $slideNumber++;
             }
             ?>
         </div>
         <div class="carousel-inner">
+            <!-- Dynamic generation of carousel slides using PHP -->
             <?php
-            // Kembali ke awal hasil kueri untuk mengambil data gambar dan judul dari database
-            mysqli_data_seek($result, 0);
-
+            // Continue using the database connection and functions
             $isFirstSlide = true;
 
-            while ($row = mysqli_fetch_assoc($result)) {
+            foreach ($kegiatan as $row) {
                 echo '<div class="carousel-item';
                 if ($isFirstSlide) {
                     echo ' active';
@@ -111,7 +113,7 @@
                 echo '">';
                 echo '<a href="image_detail.php?id=' . $row['id'] . '">';
                 echo '<img src="assets/' . $row['gambar'] . '" class="d-block w-100 img-fluid" alt="' . $row['judul'] . '">';
-                echo '<div class="carousel-overlay"></div>'; // Overlay div
+                echo '<div class="carousel-overlay"></div>';
                 echo '<div class="carousel-caption d-none d-md-block">';
                 echo '<h5 class="text-white">' . $row['judul'] . '</h5>';
                 echo '</div>';
@@ -119,6 +121,7 @@
             }
             ?>
         </div>
+        <!-- Carousel navigation buttons -->
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -143,8 +146,13 @@
         </div>
     </footer>
 
+    <!-- Include jQuery (make sure to include it before Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Include Bootstrap JS -->
     <script src="plugin/js/bootstrap.min.js"></script>
+
+
 </body>
 
 </html>
